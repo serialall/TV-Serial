@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Unique Movies — Serial Gallery</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#ef4444;--muted:#9aa4b2;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#e6eef6;background:linear-gradient(180deg,#071025 0%, #071b2a 100%);min-height:100vh}
+    header{padding:28px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#ef4444,#f97316);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+    main{padding:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:12px;padding:12px;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;border:1px solid rgba(255,255,255,0.03)}
+    .card:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .thumb{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:var(--glass);display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .meta{padding:8px 2px}
+    .title{font-weight:700;font-size:15px;margin:0}
+    .subtitle{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    /* Series page */
+    .back{color:var(--muted);font-size:14px;margin-bottom:12px;display:inline-block}
+    .episodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .ep{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);display:flex;gap:8px;align-items:center}
+    .ep .ep-thumb{width:120px;height:68px;border-radius:6px;overflow:hidden}
+    .ep .ep-info{flex:1}
+    .ep .ep-title{font-weight:600;margin:0;font-size:14px}
+    .ep .ep-sub{color:var(--muted);font-size:13px;margin-top:6px}
+    .play-btn{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+    /* Player modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .18s ease}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal-content{width:min(1100px,95vw);background:linear-gradient(180deg,#071427,#071b2a);border-radius:12px;padding:12px;position:relative}
+    .close{position:absolute;right:12px;top:12px;background:transparent;border:0;color:var(--muted);font-size:20px;cursor:pointer}
+    iframe{width:100%;height:60vh;border-radius:8px;border:0}
+
+    footer{padding:18px 20px;color:var(--muted);font-size:13px}
+
+    @media (max-width:640px){.thumb{aspect-ratio:4/3}.ep .ep-thumb{width:100px;height:60px}}
+  </style>
+   <!-- ✅ SEO meta tags yaha add karein -->
+    <!-- ✅ Vashudha -->
+
+  <meta name="keywords" content="Vasudha 21 August 2023 Full Episode Today|| Vasudha Today Full Episode vasudha full episode today vasudha vasudha aaj ka episode vasudha new promo vasudha full episode vasudha today episode vasudha serial vasudha aaj ka full episode vasudha today vasudha 3 february 2021 full episode today kundali bhagya full episode today, kundali bhagya, kundali bhagya aaj ka episode, kundali bhagya new promo, kundali bhagya full episode, kundali bhagya aaj full episode, kundali bhagya today, kundali bhagya serial, kundali bhagya 25 june 2021, kundali bhagya 25 june 2021 full episode today, kundali bhagya 25 june full episode, kundali bhagya 25 june promo, kundali bhagya 25 june full episode 2021, kundali bhagya 25 june 2021 promo, kundali bhagya 25 june 2021 full episode, kundali bhagya full episode today, kundali bhagya aaj ka episode, kundali bhagya aaj ka, kundali bhagya aaj ka full episode, kundali bhagya today episode vasudha today full episode, vasudha full episode, vasudha, vasudha and tashan e ishq mahasangam, vasudha episode today, vasudha aaj ka episode, vasudha jashn e milan, vasudha full episode today promo, vasudha full episode 1, vasudha, g plus vasudha, gtv vasudha, vasudha todays latest episode, vasudha episode, tv show, drama, vasudha todays full episode, vasudha 25 October 2021 full episode, vasudha, vasudha new promo, vasudha aaj ka full episode, vas 
+ 
+vasudha full episode today, vasudha tashan e ishq mahasangam, vasudha episode today, vasudha aaj ka episode, vasudha jashn e milan, vasudha full episode today promo, vasudha full episode 1, vasudha, g plus vasudha, gtv vasudha, vasudhato todays latest episode, vasudha episode, tv show, drama, vasudha todays full episode, vasudha 25 October 2021 full episode, vasudha, vasudha new promo, vasudha aaj ka full episode, vas vasudha full episode today, vasudha watch online, vas vasudha full episode today live, vasudha 25 October 2021 full episode, vasudha 24 Vasudha aaj ka Episode Vasudha full episode Vasudha full serial Vasudha new episode today Vasudha zee TV vasudha today episode, vasudha full episode, vasudha 28th January 2021, vasudha today full episode, vasudha new promo, vasudha new episode, vasudha aaj ka episode, vasudha all episodes, vasudha aaj ka full episode, vasudha august 2021, vasudha bhagya, vasudha drama, vasudha drama episode, vasudha drama serial, vasudha drama new episode, vasudha bhagya upcoming episode, वसुधा अपकमिंग एपिसोड, vasudha live episode,zee tv episode, zee tv episode kundali bhagya, वसुधा लाइव, वसुधा लाइव, vasudha episode today full, vasudha today episode full zee tv,, एपिसोड, vasudha live episode today, कुंडली भाग्य ज़ी टीवी, कुंडली भाग्य ज़ी टीवी फुल एपिसोड,, Vasudha aaj ka Episode Vasudha full episode Vasudha full serial Vasudha new episode today Vasudha zee TV serial Vasudha">
+
+<!-- ✅ Anupama -->
+ <meta name="keywords" content="anupama today episode full, anupama today full episode, anupama serial today episode full, anupama today episode, anupama full episode, anupama ka today episode, anupama serial today episode, anupama serial today episode promo, anupama 24th september 2025 full episode, anupama 23rd september 2025 full episode, anupama 19th september 2025 full episode, anupama 16th september 2025 full episode, anupama 20th september 2025 full episode, anupama 18th september 2025 full episode">
+
+ <!-- ✅ KumkumBhagya -->
+ <meta name="keywords" content="
+Kumkum Bhagya 21 August 2023 Full Episode Today||Kumkum Bhagya Today Full Episode kumkum bhagya full episode today kumkum bhagya kumkum bhagya aaj ka episode kumkum bhagya new promo kumkum bhagya full episode kumkum bhagya today episode kumkum bhagya serial kumkum bhagya aaj ka full episode kumkum bhagya today kumkum bhagya 3 february 2021 full episode today kundali bhagya full episode today, kundali bhagya, kundali bhagya aaj ka episode, kundali bhagya new promo, kundali bhagya full episode, kundali bhagya aaj full episode, kundali bhagya today, kundali bhagya serial, kundali bhagya 25 june 2021, kundali bhagya 25 june 2021 full episode today, kundali bhagya 25 june full episode, kundali bhagya 25 june promo, kundali bhagya 25 june full episode 2021, kundali bhagya 25 june 2021 promo, kundali bhagya 25 june 2021 full episode,kundali bhagya full episode today, kundali bhagya aaj ka episode, kundali bhagya aaj ka, kundali bhagya aaj ka full episode,kundali bhagya today episode kumkum bhagya today full episode, kumkum bhagya full episode, kumkum bhagya , kumkum bhagya and tashan e ishq mahasangam, kumkum bhagya episode today, kumkum bhagya aaj ka episode, kumkum bhagya jashn e milan, kumkum bhagya full episode today promo, kumkum bhagya full episode 1, kumkum bhagya, g plus kumkum bhagya, gtv kumkum bhagya, kumkubhagya todays latest episode, kumkum bhagya episode, tv show, drama, kumkum bhagya todays full episode, kumkum bhagya 25 October 2021 full episode, kumkum bhagya , kumkum bhagya new promo, kumkum bhagya aaj ka full episode, kum kumkum bhagya full episode today, kumkum bhagya watch online, kum kumkum bhagya full episode today live, kumkum bhagya 25 October 2021 full episode, kumkum bhagya 24 Kumkum Bhagya aaj ka Episode Kumkum bhagya full episode Kumkum bhagya full serial Kumkum bhagya new episode today Kumkum bhagya zee TV kumkum bhagya today episode, kumkum bhagya full episode, kumkum bhagya 28th January 2021, kumkum bhagya today full episode, kumkum bhagya new promo, kumkum bhagya new episode, kumkum bhagya aaj ka episode, kumkum bhagya all episodes, kumkum bhagya aaj ka full episode, kumkum bhagya august 2021, kumkum bhagya bhagya, kumkum bhagya drama, kumkum bhagya drama episode, kumkum bhagya drama serial, kumkum bhagya drama new episode, kumkum bhagya
+
+ bhagya upcoming episode,कुमकुम भाग्य अपकमिंग एपिसोड,kumkum bhagya live episode,zee tv episode,zee tv episode kundali bhagya,कुमकुम भाग्य लाइव,कुमकुम भाग्य लाइव,kumkum bhagya episode today full,kumkum bhagya today episode full zee tv,, एपिसोड,kumkum bhagya live episode today,कुंडली भाग्य ज़ी टीवी,कुंडली भाग्य ज़ी टीवी फुल एपिसोड,, Kumkum Bhagya aaj ka Episode Kumkum bhagya full episode Kumkum bhagya full serial Kumkum bhagya new episode today Kumkum bhagya zee TV serial Kumkum bhagya #kumkum#bhagya#full#epispd#kumkumbhagya#fullepisod#kumkumbhagyafullepisod#kumkumbhagya#zeetv#kumkum#bjagya#serial Kumkum bhagya me kya hoga Kumkum bhagya me aage ka dikhaye Kumkum bhagya ab kya hoga #kumkumbhagyaaajkaepiso">
+
+ <!-- ✅ Kundali Bhagya-->
+ <meta name="keywords" content="kundali bhagya today full episode, kundali bhagya today episode, kundali bhagya aaj ka full episode, kundali bhagya episode, kundali bhagya today, kundali bhagya aaj ka episode, saru today full episode, saru full episode today, kundali bhagya, kundali bhagya, kundali kundali bhagya, kundali bhagya natak, aaj ka kundali bhagya, kundali bhagya serial, saru new episode today, full episode, saru aaj ka full episode, saru serial 25 september full episode, saru serial 24 september full episode">
+
+ <!-- ✅ Yeh rishta kya kehlata hai -->
+ <meta name="keywords" content="yeh rishta kya kehlata hai full episode, yeh rishta kya kehlata hai today episode, yeh rishta kya kehlata hai full episode today, yeh rishta kya kehlata hai today full episode, yeh rishta kya kehlata hai aaj ka full episode, ye rista kya kahlata hai full episode today, ye rishta kya kehlata hai episode today, yeh rishta kya kehlata hai episode, yeh rishta kya kehlata hai episode 1, yeh rishta kya kehlata hai new episode, yeh rishta kya kehlata hai aaj ka episode, yeh rishta kya kehlata hai latest episode">
+
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">S</div>
+      <div>
+        <h1>Serials</h1>
+        <p class="lead">Click a serial cover to view its episodes. Click an episode to play.</p>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div style="color:var(--muted);font-size:13px"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Gallery view -->
+    <section id="galleryView">
+      <div class="grid" id="seriesGrid"></div>
+    </section>
+
+    <!-- Series view (hidden by default) -->
+    <section id="seriesView" style="display:none">
+      <a class="back" id="backToGallery">← Back to all serials</a>
+      <div id="seriesHeader" style="display:flex;gap:12px;align-items:center;margin-bottom:18px"></div>
+      <div class="episodes" id="episodeList"></div>
+    </section>
+  </main>
+
+  <div class="modal" id="playerModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" id="closeModal">✕</button>
+      <div id="playerContainer"></div>
+    </div>
+  </div>
+
+  <!--footer>
+    Tip: Replace the placeholder images and YouTube IDs in the JavaScript data object below with your own.
+  <footer-->
+
+  <script>
+    // ====== Replace this data with your 5 serials and their episodes ======
+    const data = [
+      {
+        id: 's1',
+        title: 'Kundali Bhagya',
+        cover: 'images/KundaliBhagya.jpg',
+        description: 'Kundali Bhagya Full Episode',
+        episodes: [
+          {title:'Episode 1', youtubeId:'8X9rHKToBbU'},
+          {title:'Episode 2', youtubeId:'jNQXAC9IVRw'},
+          {title:'Episode 3', youtubeId:'3JZ_D3ELwOQ'}
+        ]
+      },
+      
+      {
+        id: 's2',
+        title: 'VASUDHA',
+        cover: 'images/VASUDHA.jpg',
+        description: 'VASUDHA Full Episode',
+        episodes: [
+          {title:'Episode 1', youtubeId:'M7lc1UVf-VE'},
+          {title:'Episode 2', youtubeId:'e-ORhEE9VVg'}
+        ]
+      },
+      {id:'s3',
+      title:'Anupama',
+      cover:'images/Anupama.jpg',
+      description:'Anupama Full Episode',
+      episodes:[{title:'EP1',youtubeId:'kXYiU_JCYtU'}
+         ]
+      },
+
+      
+    {id:'s4',
+      title:'KumKum Bhagya',
+      cover:'images/KumkumBhagya.png',
+      description:'KumKum Bhagya Full Episode',
+      episodes:[{title:'EP1',youtubeId:'Zi_XLOBDo_Y'}]
+      },
+
+      {id:'s5',
+      title:'Yeh Rishta Kya Kehlata Hai',
+      cover:'images/YehRishta.png',
+      description:'',
+      episodes:[{title:'EP1',youtubeId:'9bZkp7q19f0'}]}
+    ];
+
+    // ====== End of user content area ======
+
+    const seriesGrid = document.getElementById('seriesGrid');
+    const seriesView = document.getElementById('seriesView');
+    const galleryView = document.getElementById('galleryView');
+    const episodeList = document.getElementById('episodeList');
+    const seriesHeader = document.getElementById('seriesHeader');
+    const backToGallery = document.getElementById('backToGallery');
+    const playerModal = document.getElementById('playerModal');
+    const playerContainer = document.getElementById('playerContainer');
+    const closeModal = document.getElementById('closeModal');
+
+    function renderGallery(){
+      seriesGrid.innerHTML = '';
+      data.forEach(s=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="thumb"><img alt="${s.title}" src="${s.cover}" loading="lazy"></div>
+          <div class="meta">
+            <div class="title">${s.title}</div>
+            <div class="subtitle">${s.description || 'Click to view episodes'}</div>
+          </div>`;
+        card.addEventListener('click', ()=>openSeries(s.id));
+        seriesGrid.appendChild(card);
+      })
+    }
+
+    function openSeries(id){
+      const s = data.find(x=>x.id===id);
+      if(!s) return;
+      galleryView.style.display = 'none';
+      seriesView.style.display = '';
+      seriesHeader.innerHTML = `<div style="width:160px"><img src="${s.cover}" style="width:100%;border-radius:8px"></div><div><h2 style="margin:0">${s.title}</h2><p style="color:var(--muted);margin-top:6px">${s.description}</p></div>`;
+      episodeList.innerHTML = '';
+      s.episodes.forEach((ep,idx)=>{
+        const epdiv = document.createElement('div'); epdiv.className='ep';
+        epdiv.innerHTML = `
+          <div class="ep-thumb"><img src="https://img.youtube.com/vi/${ep.youtubeId}/hqdefault.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+          <div class="ep-info">
+            <div class="ep-title">${idx+1}. ${ep.title}</div>
+            <div class="ep-sub">Watch on YouTube • ${ep.youtubeId}</div>
+          </div>
+          <div>
+            <button class="play-btn" data-id="${ep.youtubeId}">Play</button>
+          </div>`;
+        episodeList.appendChild(epdiv);
+      })
+
+      // attach play handlers
+      episodeList.querySelectorAll('.play-btn').forEach(b=>{
+        b.addEventListener('click', ()=>openPlayer(b.dataset.id));
+      })
+    }
+
+    backToGallery.addEventListener('click', ()=>{
+      seriesView.style.display = 'none';
+      galleryView.style.display = '';
+      playerContainer.innerHTML = '';
+    });
+
+    function openPlayer(ytId){
+      playerContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      playerModal.classList.add('open');
+      playerModal.setAttribute('aria-hidden','false');
+    }
+    closeModal.addEventListener('click', closePlayer);
+    playerModal.addEventListener('click', (e)=>{ if(e.target===playerModal) closePlayer(); });
+    function closePlayer(){ playerModal.classList.remove('open'); playerModal.setAttribute('aria-hidden','true'); playerContainer.innerHTML = ''; }
+
+    // init
+    renderGallery();
+
+    // Optional: read ?series=ID in query to open directly
+    const params = new URLSearchParams(location.search);
+    if(params.get('series')) openSeries(params.get('series'));
+  </script>
+</body>
+</html>
